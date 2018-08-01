@@ -1,0 +1,17 @@
+{% extends "user/user_index_base.html" %}
+
+{% block content %}
+<div id="message" class="tabcontent">
+         <div>
+             <div style="height: 365px"><!10个>
+                            {% for mes in user_messages %}
+                     <div class="articleC">
+                                <a href="#">{{ mes.who }}</a>
+                                <span class="writeB"><samll> {{ mes.time.strftime("%Y-%m-%d %H:%M:%S") }} </samll>评论了你的</span>
+                                <a href="{{ url_for('main.single',post_id=mes.post_id) }}">{{ mes.post }}</a>
+                            </div>
+                             {% endfor %}
+                        </div>
+                    </div>
+                </div>
+{% endblock %}

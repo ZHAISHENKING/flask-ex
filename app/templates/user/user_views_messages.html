@@ -1,0 +1,21 @@
+{% extends "user/user_index_base.html" %}
+
+{% block content %}
+<div id="message" class="tabcontent">
+    <div>
+            <div style="height: 365px"><!10个>
+                            {% for mes in user_views_messages %}
+                            <div class="articleB">
+                                <div class="nameC">
+                                    <span class="writeA">
+                                    <small>{{ mes.time.strftime("%Y-%m-%d %H:%M:%S") }}</small>浏览</span>
+                                    <small><a href="{{url_for('main.single',post_id=mes.post_id) }}">{{ mes.post}}</a></small>
+                                </div>  
+                            </div>
+                             {% endfor %}
+                        </div>
+
+                    </div>
+                        
+                </div>                
+{% endblock %}

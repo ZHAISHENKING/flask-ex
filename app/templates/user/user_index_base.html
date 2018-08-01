@@ -1,0 +1,107 @@
+{% extends "main/base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/user_style.css") }}">
+    <style>
+    /*a  upload */
+    .a-upload {
+        padding: 4px 10px;
+        line-height: 20px;
+        position: relative;
+        cursor: pointer;
+        color: #888;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        display: inline-block;
+        *display: inline;
+        *zoom: 1
+    }
+
+    .a-upload  input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer
+    }
+
+    .a-upload:hover {
+        color: #444;
+        background: #eee;
+        border-color: #ccc;
+        text-decoration: none
+    }
+
+    .file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    <div class="col-md-3">
+        <div class="centerA">
+            {% if current_user.is_authenticated %}
+                <img src="{{ url_for('static', filename="img/"+current_user.avatar_img_url) }}" class="img-circleT">
+            {% endif %}
+            <div>
+                <p class="nameB">{{ current_user.name }}</p>
+            </div>
+            <div class="MytipA">
+                <form action="{{ url_for('user.upload_file') }}" method="POST" enctype=multipart/form-data>
+                    <a  class="a-upload"><input type="file" name="file">修改头像</a>
+                    <a  class="file"><input type="submit">提交头像</a>
+                </form>
+                {#                <a class="centerB" href="#">修改头像</a>#}
+                {#                <a href="{{ url_for('user.logout') }}">注销</a>#}
+            </div>
+            <div class="centerC">
+                <ul class="MytipB">
+                    <li><a class="tablinks" href="{{ url_for('user.user_articles') }}">我的文章</a></li>
+                    <li><a class="tablinks" href="{{ url_for('user.user_messages') }}">我的消息</a></li>
+                    <li><a class="tablinks" href="{{ url_for('user.user_views_messages') }}">浏览记录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+        <div class="jumbotron" style="padding-left: 0px;">
+            {% for tag in current_user.get_tags %}
+                <span class="label label-success">{{ tag.name }}</span>
+            {% endfor %}
+            <h3>{{ current_user.directions }}</h3>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+{% endblock %}
+

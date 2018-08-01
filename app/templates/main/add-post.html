@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/editormd.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <form action="{{ url_for('main.add_post') }}" method="POST" class="add-article-form">
+
+        <div class="col-md-12">
+            <h1 class="page-header">撰写新文章</h1>
+            <div class="form-group">
+                <label class="sr-only">标题</label>
+
+                {{ form.hidden_tag() }}
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                <label class="sr-only">内容</label>
+
+                <div id="test-editormd" class="form-control">
+                    {{ form.body }}
+                </div>
+            </div>
+            <div class="add-article-box">
+                <h2 class="add-article-box-title"><span>标签</span></h2>
+                <div class="add-article-box-content">
+                    {{ form.get_tags }}
+                    <span class="prompt-text">请务必选择一个合适的标题。</span>
+                </div>
+            </div>
+            {{ form.csrf_token }}
+            {{ form.submit }}
+        </div>
+    </form>
+
+
+
+{% endblock %}
+{% block js %}
+    {% include "_add_index_article_footer.html" %}
+{% endblock %}

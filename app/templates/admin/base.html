@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fly Blog后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    {% block style %}
+    {% endblock %}
+    <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='images/icon/icon.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon/favicon.ico') }}">
+    <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</head>
+
+<body class="user-select">
+
+{% block body %}
+
+{% endblock %}
+
+<script src="{{ url_for('static', filename='js/admin-scripts.js') }}"></script>
+
+</body>
+</html>

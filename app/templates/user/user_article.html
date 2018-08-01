@@ -1,0 +1,29 @@
+{% extends "user/user_index_base.html" %}
+{% import "_paginated.html" as pg %}
+
+{% block content %}
+     <div id="article" class="tabcontent">
+            <div>
+                <div style="height: 280px"><!5个>
+                    {% for article in user_articles.items %}
+                    <div class="articleA">
+                        <div class="nameC">
+                            <a href="{{ url_for('main.single', post_id=article.id) }}">{{ article.title }}</a>
+                        </div>
+                        <div class="meta">
+                            <span>{{ article.create_time }}</span>
+                            <span>浏览 {{ article.post_views }}</span>
+                            <span>评论 {{ article.comments | count() }}</span>
+                            <span>喜欢 666</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="centerD">
+                    <nav aria-label="Page navigation">
+                        {{ pg.page(user_articles, 'user.user_articles') }}
+                    </nav>
+                </div>
+            </div>
+        </div>
+{% endblock %}

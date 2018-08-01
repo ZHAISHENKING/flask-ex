@@ -1,0 +1,30 @@
+{% macro page(articles, url) -%}
+
+<ul class="pagination pagenav">
+    {% if articles.has_prev %}
+    <li><a aria-label="Previous" href="{{ url_for(url,page=articles.prev_num) }}"><span
+            aria-hidden="true">&laquo;</span></a></li>
+    {% else %}
+    <li aria-label="Previous" class="disabled"><a href="#"><span aria-hidden="true">&laquo;</span></a></li>
+    {% endif %}
+    {% for v in articles.iter_pages() %}
+    {% if v %}
+        {% if v == articles.page %}
+        <li class="active"><a href="#">{{ v }}</a></li>
+        {% else %}
+        <li><a href="{{ url_for(url,page=v ) }}">{{ v }}</a></li>
+        {% endif %}
+    {% else %}
+    <li class="disbled"><a href="#">&hellip;</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if articles.has_next %}
+    <li><a aria-label="Next" href="{{ url_for(url,page=articles.prev_num ) }}"><span
+            aria-hidden="true">&raquo;</span></a></li>
+    {% else %}
+    <li class="disabled"><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
+    {% endif %}
+
+</ul>
+
+{%- endmacro %}

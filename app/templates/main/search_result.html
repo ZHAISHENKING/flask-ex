@@ -1,0 +1,46 @@
+{% extends "main/base.html" %}
+{% import "_paginated.html" as pg %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/main.css") }}">
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="col-md-8">
+        <div class="container-fluid" style="padding: 0;">
+            {% if articles %}
+                {% for article in articles.items %}
+                    <div class="row info-content">
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                            {% if article.img_url %}
+                                <img class="img-responsive" style="width: 400px;height: 180px"
+                                     src="{{ url_for('static', filename="postImg/"+article.img_url) }}">
+                            {% else %}
+                                <img class="img-responsive" style="width: 400px;height: 180px"
+                                     src="{{ url_for('static', filename="postImg/1.png") }}">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-7" style="margin-top: 50px;">
+                            <h4><a href="{{ url_for('main.single', post_id=article.id) }}">{{ article.title }}</a></h4>
+                            <p>{{ article.body[:40] | markdown }}</p>
+                            <p5>{{ article.create_time.strftime("%Y-%m-%d %H:%M:%S") }}</p5>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">{{ pg.page(articles, 'main.index') }}</div>
+                    <div class="col-md-4"></div>
+                </div>
+            {% else %}
+                    <h1 style="background-color: #eee">对不起，没有搜到你想要的结果</h1>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include "_aside_index.html" %}
+
+{% endblock %}

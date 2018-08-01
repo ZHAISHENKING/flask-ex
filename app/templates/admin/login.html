@@ -1,0 +1,43 @@
+{% extends 'admin/base.html' %}
+
+
+{% block body %}
+<div class="container">
+  <div class="siteIcon"><img src="{{ url_for('static', filename='images/icon/icon.png') }}" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用Fly Blog博客管理系统" draggable="false" /></div>
+  <form action="#" method="POST" autocomplete="off" class="form-signin">
+    <h2 class="form-signin-heading">管理员登录</h2>
+    <label  class="sr-only">用户名</label>
+      {{form.hidden_tag()}}
+      {{ form.csrf_token }}
+      {{ form.username }}
+    <label  class="sr-only">密码</label>
+
+      {{ form.password }}
+      {{ form.submit() }}
+  </form>
+  <div class="footer">
+    <p><a href="{{ url_for('admin.index') }}" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到后台 →</a></p>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script>
+$('[data-toggle="tooltip"]').tooltip();
+window.oncontextmenu = function(){
+	//return false;
+};
+$('.siteIcon img').click(function(){
+	window.location.reload();
+});
+$('#signinSubmit').click(function(){
+	if($('#userName').val() === ''){
+		$(this).text('用户名不能为空');
+	}else if($('#userPwd').val() === ''){
+		$(this).text('密码不能为空');
+	}else{
+		$(this).text('请稍后...');
+	}
+});
+</script>
+
+{% endblock %}
+

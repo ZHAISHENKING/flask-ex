@@ -1,0 +1,20 @@
+
+<script src="{{url_for('static',filename='js/editormd.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/editormd.min.js')}}"></script>
+<script >
+    var testEditor;
+        $(function(){
+            testEditor=editormd("test-editormd",{
+//                width:'500px',
+                height:'600px',
+                syncScrolling : "single",
+                path:"{{url_for('static',filename='editormd/lib/')}}",
+                //启动本地图片上传功能
+                imageUpload:true,
+                imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "{{url_for('main.upload')}}"
+            });
+        })
+</script>
+
+

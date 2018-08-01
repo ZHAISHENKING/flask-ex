@@ -1,0 +1,13 @@
+*.pyc
+*.xml
+*.jpg
+*.png
+BlogGo_Flask_env3
+OctBlog-master
+Ylsat_admin
+maple-bbs-master
+__pycache__
+.git
+.idea
+Postspider
+venv

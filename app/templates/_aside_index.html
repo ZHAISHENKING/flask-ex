@@ -1,0 +1,26 @@
+<div class="col-md-4 info-right">
+    <blockquote>
+        <h2>热门文章</h2>
+    </blockquote>
+
+    <div class="container-fluid">
+
+        {% for h_article in hot_article %}
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-5" style="margin: 12px 0; padding: 0">
+                    {% if h_article.img_url %}
+                        <img class="img-responsive" style="width: 160px; height: 80px;"
+                             src="{{ url_for('static', filename="postImg/"+h_article.img_url) }}">
+                    {% else %}
+                        <img class="img-responsive" style="width: 160px; height: 80px;"
+                             src="{{ url_for('static', filename="postImg/1.png") }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-7" style="padding-right: 0">
+                    <a href="{{ url_for('main.single', post_id=h_article.id) }}"><h4
+                            style="margin-top: 25px;">{{ h_article.title }}</h4></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

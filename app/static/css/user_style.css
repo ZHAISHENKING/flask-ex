@@ -1,0 +1,241 @@
+#information {
+	background-color: #eee; 
+	padding: 40px 0;
+}
+.info-content {
+	background-color: #fff; 
+	margin: 0 0 20px 0;
+	box-shadow: 2px 2px 3px #ccc;
+}
+.info-content img {
+	margin: 12px 0;
+}
+.info-content h4 {
+	color: #333;
+	padding: 2px 0 0 0;
+	font-size: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.info-right {
+	background-color: #fff;
+	box-shadow: 2px 2px 3px #ccc;
+}
+.info-right blockquote {
+	margin: 0;
+	padding: 0;
+}
+.info-right h2 {
+	font-size: 20px;
+	color: #333;
+	padding: 5px;
+}
+.info-content p {
+
+	line-height: 1.6;
+}
+.img-responsive {
+	width: 75px; 
+	height: 43px;
+	padding-right: 10px;
+	    
+}
+.navbar-brand {
+	padding: 5px 0 0 0;
+}
+
+.navbar {
+	padding-left:12px;
+}
+.img-circle
+{
+	width: 36px;
+	height: 36px;
+} 
+#img-tou {
+	padding-top: 8px;
+	padding-bottom: 10px;
+}
+.info{
+	    vertical-align: middle;
+    display: inline-block;
+    margin-left: 8px;
+}
+.name{
+	color: black;
+}
+.meta span{
+	margin-right: 10px;
+	    font-size: 12px;
+    color: #969696;
+}
+.body {
+	/*background-color: #fff;*/
+	padding-top: 25px;
+}
+.img-circleT
+{
+	width: 86px;
+	height: 86px;
+	border-radius: 50%;
+
+}
+.centerA{
+ margin: auto;
+ text-align: center;
+}
+.nameB{
+	    font-size: 21px;
+    font-weight: 700;
+    margin-top: 10px;
+color: black;
+}
+.centerB{
+ padding-right: 10PX;
+}
+.centerC{
+ padding-right: 40PX;
+}
+
+.MytipA{
+	border-style: solid;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #333; 
+}
+.MytipB{
+	list-style-type: none;
+}
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+ 
+/* 鼠标移动到选项上修改背景颜色 */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    /*display: none;*/
+    padding: 6px 12px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+.jumbotron {
+
+    padding-bottom: 20px;
+    padding-top: 75px;
+    margin-bottom: 0px;
+
+}
+.nameC a {
+	color: #171819;
+}
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.titleA{
+	color: black;
+	font-size: 18px;
+    font-weight: 700;
+}
+.commentA{
+	float:right;
+	border-style: solid;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #333; 
+}
+.BG{
+	background-color: #99CCFF;
+    height: 130px;
+}
+.autograph{
+	text-align: center;
+	padding-top: 90px;
+	font-size: 16px;
+	font-weight: 700;
+}
+.centerD{
+	margin: auto;
+    width: 50%;
+}
+.meta span{
+	    text-align: center;
+	    font-size: 12px;
+    color: #969696;
+}
+.nameC{
+	    font-size: 18px;
+    font-weight: 500;
+color: black;
+}
+.articleA{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.writeA{
+	float: right;
+	font-size: 14px;
+    color: #969696;
+}
+.articleB{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.writeB{
+	font-size: 14px;
+    color: #969696;
+}
+.articleC{
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+

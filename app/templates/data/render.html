@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Fly Blog 资源展示平台</title>
+{#    {% for jsfile_name in script_tags %}#}
+{#        <script src="{{ host }}/{{ jsfile_name }}.js"></script>#}
+    <script src="{{ url_for("static",filename="js/echarts.min.js") }}"></script>
+{#    {% endfor %}#}
+{#    {% for jsfile_name in script_users %}#}
+{#        <script src="{{ host }}/{{ jsfile_name }}.js"></script>#}
+{#    {% endfor %}#}
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/bootstrap.min.css") }}">
+</head>
+
+<body>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7"><h1 style="margin-left: 200px;margin-bottom: 50px;">Fly Blog数据分析平台</h1></div>
+    <div class="col-md-1"></div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">{{ myechart_tags|safe }}</div>
+    <div class="col-md-1"></div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">{{ myechart_user|safe }}</div>
+    <div class="col-md-1"></div>
+</div>
+
+</body>
+
+</html>

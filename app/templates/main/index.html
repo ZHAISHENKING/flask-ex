@@ -1,0 +1,71 @@
+{% extends "main/base.html" %}
+{% import "_paginated.html" as pg %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/main.css") }}">
+{% endblock %}
+
+
+{% block search_form %}
+    <form class="navbar-form navbar-left" role="search" , action="{{ url_for('main.search') }}">
+        <div class="form-group">
+            <input name="key" type="text" class="form-control" placeholder="搜索">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-md-8">
+        <div class="container-fluid" style="padding: 0;">
+
+            {% if top_articles %}
+
+                {% for article in top_articles %}
+
+                    <div class="row info-content">
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                          
+                                <img class="img-responsive" style="width: 400px;height: 180px"
+                                     src="{{ url_for('static', filename="postImg/"+article.img_url) }}">
+                        </div>    
+                        <div class="col-md-7" style="margin-top: 50px;">
+                            <h4><a href="{{ url_for('main.single', post_id=article.id) }}">{{ article.title }}</a></h4>
+                            <p1>{{ article.body[:20] | markdown }}</p1>
+
+                            <p>{{ article.create_time.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+
+            {% for article in articles.items %}
+                <div class="row info-content">
+                    <div class="col-md-5 col-sm-5 col-xs-5">
+
+                            <img class="img-responsive" style="width: 400px;height: 180px"
+                                 src="{{ url_for('static', filename="postImg/"+article.img_url) }}">
+                        
+                    </div>
+                    <div class="col-md-7" style="margin-top: 50px;">
+                        <h4><a href="{{ url_for('main.single', post_id=article.id) }}">{{ article.title }}</a></h4>
+                        <p>{{ article.body[:40] | markdown }}</p>
+                        <p5>{{ article.create_time.strftime("%Y-%m-%d %H:%M:%S") }}</p5>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">{{ pg.page(articles, 'main.index') }}</div>
+                <div class="col-md-4"></div>
+            </div>
+
+
+        </div>
+    </div>
+
+    {% include "_aside_index.html" %}
+
+{% endblock %}

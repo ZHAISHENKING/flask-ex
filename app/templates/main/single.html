@@ -1,0 +1,131 @@
+{% extends "main/base.html" %}
+
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/main.css") }}">
+    <style>
+        .body img {
+            width: 750px;
+            height: 400px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-md-8">
+        <div class="container-fluid" style="padding: 10px;">
+            <div class="nav-title">
+                <h1 style="margin-bottom: 20px">{{ article.title }}</h1>
+            </div>
+            <div>
+                <a class="avatar" href="#">
+                    <img src="{{ url_for('static', filename="img/"+article.author.avatar_img_url) }}"
+                         class="img-circle"></a>
+                <div class="info">
+                    {% for tag in article.tags %}
+                        <span class="label label-success">{{ tag['tags'] }}</span>
+                    {% endfor %}
+                    <span><a class="name" href="#">{{ article.author.name }}</a></span>
+                    <div class="meta">
+                        <span>{{ article.create_time.strftime("%Y-%m-%d %H:%M:%S") }}</span>
+                        <span>浏览 {{ article.post_views }}</span>
+                        <span>评论 {{ article.comments | count() }}</span>
+                        <span>喜欢 666</span>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                {{ article.body | markdown }}
+            </div>
+            <div>
+                <article class="daimabijicom-container">
+                    <div id="container">
+                        <div class="feed" id="feed1" style="height: 100px">
+                            <div class="heart " id="like1" rel="like">
+                                <div class="likeCount" id="likeCount1" style="padding-left: 10px">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% if current_user.is_authenticated %}
+                <div style="padding-left: 18px">
+                    {% for message in get_flashed_messages() %}
+                        <div class="alert alert-danger alert-dismissable" style="width: 600px;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <form id="comment_input" method="POST">
+                    <textarea id="comments_text" name="comments_text" placeholder="请输入内容"
+                              style="margin-left: 5px;height: 96px"></textarea>
+                        <div>
+                            <a class="btn cancel">取消</a>
+
+                            <input class="btn btn-send" id="submit" name="submit" type="submit" value="提交">
+                        </div>
+                    </form>
+                </div>
+            {% else %}
+                <div style="padding-left: 18px">
+                    <p>请登陆后，再来评论，谢谢</p><br>
+                </div>
+            {% endif %}
+            <div style="padding-left: 18px">
+                <ul class="answer-list">
+                    {% for comment in comments %}
+                        <li>
+                            <div class="user-info">
+                                <img class="avatar"
+                                     src="{{ url_for('static', filename="img/"+comment.author.avatar_img_url) }}">
+                                <span class="username">{{ comment.author }}</span>
+                                <span class="create_time">{{ comment.create_time.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                                <p class="answer-content">{{ comment.text }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>window.jQuery || document.write('<script src="{{ url_for('static',filename="js/jquery.min.js") }}"><\/script>')</script>
+    <script>
+        $(function () {
+            $("#comment_input").submit(function () {
+                var comment_text = $("#comments_text").val();
+                if (comment_text === "" || comment_text === null)
+                    return false;
+                var comment = {
+                    text: comment_text
+                };
+                var url = "{{ url_for('main.add_comment',post_id=article.id) }}" + "?ajax=true"
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: comment,
+                    success: function (data) {
+                        $("#comment_input")[0].reset();
+                        var html_text = "<li><div class=\"user-info\">\n" +
+                            "<img class=\"avatar\" src=" + data['user_img_url'] + ">" +
+                            "                                <span class=\"username\">" + data['user_name'] + "</span>\n" +
+                            "                                <span class=\"create_time\">" + data['time'] + "</span>\n" +
+                            "                                <p class=\"answer-content\">" + data['text'] + "</p>\n" +
+                            "                            </div></li>";
+                        $(".answer-list").prepend(html_text);
+                    }
+                })
+                return false;
+            })
+        })
+    </script>
+{% endblock %}
+
+
+

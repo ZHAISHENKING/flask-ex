@@ -1,0 +1,69 @@
+
+{% extends "main/base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/main.css") }}">
+{% endblock %}
+
+{% block body %}
+<form id="input_form" method="POST" class="form-horizontal" action="{{ url_for('user.change_pw',code=session['code']) }}">
+        <div class="center-block">
+{#            <div class="form-group">#}
+{#                <div class="col-sm-5">#}
+{#                    #}
+{#                    {{ form.code }}#}
+{#                </div>#}
+{#            </div>#}
+            <div class="form-group">
+                <div class="col-sm-5">
+                    {{ form.hidden_tag() }}
+                    {{ form.password1 }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-5">
+                    {{ form.password2 }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-0 col-sm-10">
+                    <button type="submit" class="btn btn-primary" style="width: 250px;height: 39px;">下一步</button>
+                </div>
+            </div>
+        </div>
+</form>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/messages_zh.js') }}"></script>
+    <script>
+    $(document).ready(function () {
+        $("#input_form").validate({
+            rules: {
+                password1: {
+                    required: true,
+                    minlength: 8
+                },
+                password2: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#password1"
+                }
+            },
+            messages: {
+                password1: {
+                    required: "请输入您的密码",
+                    minlength: "密码太短了，亲，不能小于8个字符"
+                },
+                password2: {
+                    required: "请再一次输入您的密码",
+                    minlength: "密码太短了，亲不能小于8个字符",
+                    equalTo: "两次密码输入不一致"
+                }
+            }
+        })
+    })
+        </script>
+{% endblock %}

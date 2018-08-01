@@ -1,0 +1,149 @@
+{% extends "main/base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/main.css") }}">
+{% endblock %}
+
+{% block body %}
+    <form id="input_form" method="POST" class="form-horizontal" action="{{ url_for('user.register') }}">
+        <div class="center-block">
+{#            <div class="form-group">#}
+{#                <div class="col-sm-5">#}
+{#                    <label>上传头像</label>#}
+{#                    #}
+{#                    {{ form.imgs_upload }}#}
+{#                </div>#}
+{#            </div>#}
+            <div class="form-group">
+                <div class="col-sm-5">
+                    {{ form.hidden_tag() }}
+                    {{ form.email }}
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-sm-5">
+                    {{ form.text }}
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-sm-5">
+                    {{ form.password1 }}
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-sm-5">
+                    {{ form.password2 }}
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-sm-5">
+                    {{ form.directions }}
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-sm-5">
+                    {{ form.get_tags }}
+                    <small>请用空格分开</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-0 col-sm-10">
+                    <button type="submit" class="btn btn-primary" style="width: 250px;height: 39px;">注册</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/messages_zh.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#input_form").validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true,
+                        remote: {
+                            url: "{{ url_for('user.check_email') }}",
+                            type: "post",
+
+                            data: {
+                                email: function () {
+                                    return $("#email").val();
+                                }
+                            }
+                        },
+                        {#                        success:"ok"#}
+
+                    },
+                    text: {
+                        required: true,
+                        minlength: 2,
+                        remote: {
+                            url: "{{ url_for('user.check_username') }}",
+                            type: "post",
+                            {#                            dataType: "json",#}
+                            data: {
+                                text: function () {
+                                    return $("#text").val();
+                                }
+                            }
+                        },
+                        {#                        success:"ok"#}
+                    },
+                    password1: {
+                        required: true,
+                        minlength: 8
+                    },
+                    password2: {
+                        required: true,
+                        minlength: 8,
+                        equalTo: "#password1"
+                    },
+                    directions: {
+                        required: true,
+                        minlength: 2
+                    },
+                    get_tags: {
+                        required: true
+                    }
+                },
+                messages: {
+                    email: {
+                        required: "请输入您的邮箱",
+                        email: "请输入正确的邮箱地址",
+                        remote: "邮箱已存在!"
+                    },
+                    text: {
+                        required: "请输入您的昵称",
+                        minlength: "昵称太短了，亲",
+                        remote: "有户名已存在!"
+                    },
+                    password1: {
+                        required: "请输入您的密码",
+                        minlength: "密码太短了，亲，不能小于8个字符"
+                    },
+                    password2: {
+                        required: "请再一次输入您的密码",
+                        minlength: "密码太短了，亲不能小于8个字符",
+                        equalTo: "两次密码输入不一致"
+                    },
+                    directions: {
+                        required: "把咱的人生格言写上",
+                        minlength: "再来点，不少于2个字符"
+                    },
+                    get_tags: {
+                        required: "请输入你的兴趣"
+                    }
+                }
+            })
+        })
+    </script>
+{% endblock %}
