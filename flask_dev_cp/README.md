@@ -1,2 +1,8 @@
-# flask-mongo
-流视频支持safari
+# flask
+> flask项目副本
+
+主要应用技术：
+- flask-mongoengine
+- flask-restful
+- blueprint
+
