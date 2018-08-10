@@ -1,55 +1,4 @@
-# 这是一个全新的项目 #
-
-----------
-
-> 项目演示地址 [fly blog](http://39.106.120.138)
-
-## why？ ##
-
-### - 抛弃了MySQL，拥抱MongoDB ###
-### - 添加了后台管理系统 ###
-### - 添加了markdwon文本编辑 ###
-
-### - 使用redis作为部分数据的缓存
-
-### - 根据用户注册时提交的兴趣，进行对文章的专门推送
-
-### - 添加了数据分析系统，采用了pyecharts，对部分数据进行了简单的分析展示
-
-[fly blog](http://39.106.120.138/data/data_show)
-username :admin
-password : maxin123
-----------
-## flask插件 ##
-
-### - flask-mongoengine  ###
-### - Flask-WTF ###
-### - Markdown ###
-### - Flask-Login ###
-
-
-还有一些就不一一列举了
-## 对flask_login模块一直搞不懂如何实现多modle登录，只好把admin后台登陆改为手动代码实现 ##
-
-------
-
-### REST ful API
-
-#### 在业余时间，我又写了一些api，其实我是蛮喜欢用前后端分离做web的，可惜前端没有学好，只好用服务端渲染的方法下面是一些实例：
-
-| http://39.106.120.138/api_v1/posts/            | 返回所有文章信息，提供翻页api    |
-| :--------------------------------------------- | -------------------------------- |
-| http://39.106.120.138/api_v1/<user_name>/post  | 返回指定用户的信息               |
-| http://39.106.120.138/api_v1/post/<post_id>    | 根据文章id返回文章信息           |
-| http://39.106.120.138/api_v1/tags              | 返回所有文章的标签               |
-| http://39.106.120.138/api_v1/tag/java          | 根据标签名称返回指定标签的信息   |
-| http://39.106.120.138/api_v1/user/tag          | 根据用户名返回返回此用户的标签   |
-| http://39.106.120.138/api_v1/users             | 返回所有用户信息                 |
-| http://39.106.120.138/api_v1/users/<user_name> | 根据用户名返回用户的信息         |
-| http://39.106.120.138/api_v1/user_mes/user     | 根据用户名返回用户的被浏览的消息 |
-
-
-## Flask+mongo探讨
+# Flask+mongo探讨
 
 最近遇到了很多问题，快速总结下问题以及已经解决的部分，大家可以一块交流探讨
 
@@ -60,6 +9,7 @@ password : maxin123
 - mongoengine
 - flask-restful
 - Logging
+- 新增flask-admin
 
 ### 项目模块拆分
 
@@ -72,6 +22,7 @@ password : maxin123
 - 路由`routes.py`，蓝图在此实例化，api所有接口放在这里方便查看管理 
 - `utli` 自己封装的外部方法，哪个应用需要就调用
 - `api` 下面不同的数据库就建不同应用，应用包含`models.py`和`api.py`
+- `admin` 作为可视化后台模型视图管理界面，目前实现了模型视图可视化，还未添加flask-login校验
 
 ### 已解决问题
 
