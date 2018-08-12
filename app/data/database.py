@@ -18,6 +18,7 @@ class MongoConnection():
             return False
         return True
 
+
 class TagsApi(MongoConnection):
     def __init__(self):
         super().__init__()
