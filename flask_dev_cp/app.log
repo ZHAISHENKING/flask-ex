@@ -1,0 +1,15 @@
+2018-08-02 11:38:59,273 - ERROR - api_1_0.py - get - 165 - localhost:27676: [Errno 61] Connection refused
+2018-08-02 11:38:59,273 - ERROR - api_1_0.py - get - 165 - localhost:27676: [Errno 61] Connection refused
+2018-08-02 11:39:05,299 - ERROR - api_1_0.py - get - 165 - localhost:27676: [Errno 61] Connection refused
+2018-08-02 11:39:05,299 - ERROR - api_1_0.py - get - 165 - localhost:27676: [Errno 61] Connection refused
+2018-08-02 13:53:05,197 - ERROR - api_1_0.py - post - 193 - 'QuerySet' object has no attribute 'save'
+2018-08-02 13:53:11,163 - ERROR - api_1_0.py - post - 193 - 'QuerySet' object has no attribute 'save'
+2018-08-02 14:01:37,963 - ERROR - api_1_0.py - post - 193 - ValidationError (Student:None) (ada could not be converted to int: ['grade'])
+2018-08-02 14:03:08,962 - ERROR - api_1_0.py - post - 193 - ValidationError (Student:None) (Only lists and tuples may be used in a list field: ['equipments'])
+2018-08-02 14:03:25,442 - ERROR - api_1_0.py - post - 193 - ValidationError (Student:None) (Only lists and tuples may be used in a list field: ['equipments'])
+2018-08-02 14:10:09,679 - ERROR - api_1_0.py - post - 193 - ValidationError (Student:None) (Only lists and tuples may be used in a list field: ['equipments'])
+2018-08-02 14:10:48,529 - ERROR - api_1_0.py - post - 193 - ValidationError (Student:None) (StringField only accepts string values: ['phone'])
+2018-08-02 14:14:17,132 - ERROR - api_1_0.py - post - 193 - E11000 duplicate key error collection: ultrabear_homework.student index: phone_1 dup key: { : "" }
+2018-08-02 14:14:44,039 - ERROR - api_1_0.py - post - 193 - E11000 duplicate key error collection: ultrabear_homework.student index: phone_1 dup key: { : "" }
+2018-08-02 14:15:03,569 - ERROR - api_1_0.py - post - 193 - E11000 duplicate key error collection: ultrabear_homework.student index: phone_1 dup key: { : "" }
+2018-08-02 14:16:06,949 - ERROR - api_1_0.py - post - 193 - Tried to save duplicate unique keys (E11000 duplicate key error collection: ultrabear_homework.student index: phone_1 dup key: { : "123456" })
