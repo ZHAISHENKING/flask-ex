@@ -124,14 +124,3 @@ except Exception as e:
 
 
 
-### 未解决问题
-
-------
-
-由于mongo本身使用就少，mongoengine使用文档百度不超过一页,所有很多问题需要谷歌，查看英文文档，现在仍有些问题未解决
-
-1.使用mongoengine如何迁移数据库,   因为mongoengine这个第三方库一直在维护，使用群体多，而且比起其他mongo orm成熟些，所以使用的mongoengine
-
-2.pyjwt在与其他后台语言对接时如何使用，为了防止api被爬取，使用jwt进行验证, go语言写的user，为在用python时怎么去添加jwt校验
-
-
